@@ -9,24 +9,33 @@
         font-family: Arial, sans-serif;
         margin: 0;
         padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
       }
       header {
         background-color: #333;
         color: #fff;
         padding: 10px;
-        text-align: center;
+        text-align: center; /* 修改标题居中显示 */
+        width: 100%; /* 保持宽度100% */
       }
       .container {
-	width: 80%;
-        margin: 20px;
+        width: 70%;
+        display: flex;
+        flex-direction: column;
       }
-      .latest-story {
+      .latest-story, .history {
+        width: 100%;
         background-color: #eee;
         border: 1px solid #ccc;
         padding: 20px;
+        margin-bottom: 20px;
       }
       .history {
-        margin-top: 20px;
+        margin-top: 0;
+        margin-bottom: 0;
       }
       .history h2 {
         margin-bottom: 10px;
