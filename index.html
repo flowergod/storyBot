@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Stories</title>
+    <style>
+      /* 样式表 */
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+      }
+      header {
+        background-color: #333;
+        color: #fff;
+        padding: 10px;
+        text-align: center;
+      }
+      .container {
+        margin: 20px;
+      }
+      .latest-story {
+        background-color: #eee;
+        border: 1px solid #ccc;
+        padding: 20px;
+      }
+      .history {
+        margin-top: 20px;
+      }
+      .history h2 {
+        margin-bottom: 10px;
+      }
+      .date {
+        cursor: pointer;
+      }
+      .story {
+        display: none;
+        background-color: #eee;
+        border: 1px solid #ccc;
+        padding: 10px;
+        margin-bottom: 10px;
+      }
+      .story p {
+        margin: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>Stories</h1>
+    </header>
+    <div class="container">
+      <div class="latest-story">
+        <h2>Latest Story</h2>
+        <p id="latest-story-text"></p>
+      </div>
+      <div class="history">
+        <h2>Story History</h2>
+        <div id="history-list"></div>
+      </div>
+    </div>
+    <script>
+      // 读取CSV文件
+      fetch("stories.csv")
+        .then((response) => response.text())
+        .then((data) => {
+          // 将CSV数据转换为数组
+          const rows = data.split("\n").slice(1);
+          const stories = rows.map((row) => {
+            const [date, story] = row.split(",");
+            return { date, story };
+          });
+
+          // 按照时间倒序排列历史故事列表
+          stories.sort((a, b) => new Date(b.date) - new Date(a.date));
+
+          // 显示最新的故事
+          document.getElementById("latest-story-text").innerHTML =
+            stories[0].story;
+			
+          // 显示历史故事列表
+          const historyList = document.getElementById("history-list");
+          const storyElements = []; // 创建故事元素的数组
+		  stories.splice(0,1);
+
+          stories.forEach((story) => {
+            const dateEl = document.createElement("div");
+            dateEl.classList.add("date");
+            dateEl.textContent = story.date;
+            dateEl.addEventListener("click", () => {
+              const storyEl = dateEl.nextElementSibling;
+              if (storyEl.style.display === "none") {
+                storyEl.style.display = "block";
+              } else {
+                storyEl.style.display = "none";
+              }
+            });
+
+            const storyEl = document.createElement("div");
+            storyEl.classList.add("story");
+            storyEl.innerHTML = story.story;
+            storyEl.style.display = "none";
+
+            historyList.appendChild(dateEl);
+            historyList.appendChild(storyEl);
+
+            storyElements.push({
+              date: new Date(story.date),
+              element: dateEl.parentNode,
+            }); // 添加故事元素到数组中
+			
+          });
+        });
+    </script>
+  </body>
+</html>
