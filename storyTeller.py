@@ -19,7 +19,7 @@ logger.addHandler(console_handler) # 添加控制台处理程序到日志记录�
 key = "sk-HX50YjivKlGN2y0zCbA60e840cE04941A1Eb23Be4fDa4a88"
 model="gpt-3.5-turbo"
 
-storyFile = '.\\storyTeller\\stories.csv'
+storyFile = '.\\storyBot\\stories.csv'
 
 # 生成故事
 def generate_story(key, msg, model):
@@ -45,7 +45,7 @@ def update_story_file(story):
     today = date.today()
 
     # 打开CSV文件
-    with open(storyFile, 'r') as file:
+    with open(storyFile, 'r', encoding='utf-8') as file:
         # 读取CSV文件内容
         csv_reader = csv.reader(file)
         # 将CSV内容转换为列表
@@ -83,7 +83,7 @@ def update_story_file(story):
         rows.append(new_row)
 
     # 将修改后的内容写回CSV文件
-    with open(storyFile, 'w', newline='') as file:
+    with open(storyFile, 'w', newline='', encoding='utf-8') as file:
         # 创建CSV写入对象
         csv_writer = csv.writer(file)
         # 逐行写入CSV内容
