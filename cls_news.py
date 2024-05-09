@@ -75,7 +75,7 @@ def summarize(url):
         api_key="sk-G1XW4KDMwFgvwZKRSUrvonSyiitbBMOihnv1mEjGNl6dQxvC",
         base_url="https://api.moonshot.cn/v1",
     )
-    messageContent = "打开并访问页面：" + url +" ，总结观点、结论和可以进一步思考的方向。输出格式：文章观点，结论，思考方向，互联网产品机会"
+    messageContent = "打开并访问页面：" + url +" ，请为我总结文章的观点和结论，并进行以下分析：1. 文章对哪个行业有影响，2. 影响是正面的还是负面的3. 按1~10评分，影响程度有多大。请以表格的形式输出，包含字段：文章观点，结论，影响行业，影响方向和程度"
     completion = client.chat.completions.create(
         model="moonshot-v1-8k",
         messages=[
@@ -100,7 +100,8 @@ if __name__=='__main__':
 
     # 写入csv
     filename = 'cls_news.csv'
-    os.remove(filename)
+    if os.path.exists(filename):
+        os.remove(filename)
     cntNews = len(title_list)
     lNews = [["分类, 标题, 地址, 时间"]]
     strNewsUrls = ''
@@ -114,7 +115,7 @@ if __name__=='__main__':
         writer = csv.writer(csvfile, quoting=csv.QUOTE_NONE, escapechar=' ')
         writer.writerows(lNews)
     
-    promptMsg = '打开并访问以下地址： ' + strNewsUrls + '总结观点、结论和可以进一步思考的方向。输出格式：文章观点，结论，思考方向，互联网产品机会'
+    promptMsg = "打开并访问页面：" + strNewsUrls +" ，请为我总结文章的观点和结论，并进行以下分析：1. 文章对哪个行业有影响，2. 影响是正面的还是负面的3. 按1~10评分，影响程度有多大。请以表格的形式输出，包含字段：文章观点，结论，影响行业，影响方向和程度"
 
     print(promptMsg + '\n')
 
