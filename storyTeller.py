@@ -1,9 +1,6 @@
-import os
-import requests
 import openai
 import csv
 from datetime import datetime, date, timedelta
-import logging
  
 # 配置日志记录器
 # logger = logging.getLogger()
