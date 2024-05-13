@@ -2,7 +2,7 @@ name: Daily Schedule
 on:
   schedule:
     # 配置CRON表达式，每天运行一次，这里设置为每天的0点
-    - cron: '00 7 * * *'
+    - cron: '00 10 * * *'
 jobs:
   build:
     runs-on: ubuntu-latest
