@@ -71,6 +71,7 @@
         });
       // 切换故事显示/隐藏的函数
       function toggleStory(date, show = false) {
+	const storyEl = dateEl.nextElementSibling;
         // 先隐藏所有故事
         Object.values(storyElements).forEach(storyEl => {
           storyEl.style.display = "none";
