@@ -22,6 +22,7 @@ h1 {
 
 .container {
   max-width: 90%;
+  margin: 0 auto; /* 添加这行以使容器水平居中 */
   padding: 20px;
   background-color: #ffffff;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -80,8 +81,9 @@ p {
     background: linear-gradient(to bottom, #000456, #00d2ff);
   }
   .container {
-    max-width: 95%;
+    max-width: 90%;
     padding: 10px;
+    margin: 0 auto; /* 确保在媒体查询中也添加了水平居中的样式 */    
   }
 
   h1 {
