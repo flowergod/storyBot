@@ -9,7 +9,9 @@ jobs:
     steps:
     - name: Checkout repository
       uses: actions/checkout@v2
-      
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+        fetch-depth: 0 # 确保历史提交都被拉取，以便正确地进行版本比较和合并
     - name: Set up Python
       uses: actions/setup-python@v2
       with:
