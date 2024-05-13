@@ -53,12 +53,12 @@
             dateEl.classList.add("date");
             dateEl.textContent = story.date;
             dateEl.addEventListener("click", () => {
-              const storyEl = dateEl.nextElementSibling;
-	      // 先隐藏所有故事
-	      Object.values(storyElements).forEach(storyEl => {
-	        storyEl.style.display = "none";
-	      });		    
+              const storyEl = dateEl.nextElementSibling;	    
               if (storyEl.style.display === "none") {
+		// 先隐藏所有故事
+	        Object.values(storyElements).forEach(storyEl => {
+	          storyEl.style.display = "none";
+	        });
                 storyEl.style.display = "block";
               } else {
                 storyEl.style.display = "none";
