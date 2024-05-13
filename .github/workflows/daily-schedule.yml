@@ -36,7 +36,7 @@ jobs:
           # Add the changed file to staging area
           git add stories.csv
           # Commit the changes with a message
-          git commit -m "Update stories.csv with new story" --author="GitHub Actions <actions@github.com>"
+          git commit -m "Update stories.csv with new story" --author="flowergod <flowergod@gmail.com>"
           # Push the changes to the branch
           git push
           echo "Changes have been committed and pushed."
