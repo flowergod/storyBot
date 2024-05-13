@@ -5,7 +5,7 @@ from datetime import datetime, date, timedelta
 # 设置OpenAI API密钥
 key = "sk-K231s4pXBHfHz76KNxzBfJxCAWV0V6oAm1L6z8QC8LmkYyLk"
 model="moonshot-v1-8k"
-storyFile = os.getcwd() + "\\stories.csv"
+storyFile = "stories.csv"
 
 # 生成故事
 def generate_story(key, msg, model):
