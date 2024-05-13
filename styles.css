@@ -30,7 +30,7 @@ h1 {
 p {
   text-align: left; /* 正文左对齐 */
   background-color: #f8faff;
-  padding: 15px auto;
+  padding: 15px;
 }
 
 .latest-story,
