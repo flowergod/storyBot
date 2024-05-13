@@ -22,7 +22,6 @@ h1 {
 
 .container {
   max-width: 90%;
-  margin: 20px auto;
   padding: 20px;
   background-color: #ffffff;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -31,6 +30,7 @@ h1 {
 p {
   text-align: left; /* 正文左对齐 */
   background-color: #f8faff;
+  padding: 15px auto;
 }
 
 .latest-story,
@@ -76,6 +76,9 @@ p {
 
 /* 响应式设计 */
 @media (max-width: 768px) {
+  body {
+    background: linear-gradient(to bottom, #000456, #00d2ff);
+  }
   .container {
     max-width: 95%;
     padding: 10px;
