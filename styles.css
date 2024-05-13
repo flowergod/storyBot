@@ -24,19 +24,18 @@ h1 {
   max-width: 90%;
   margin: 20px auto;
   padding: 20px;
-  /* 使用非常浅的浅蓝色背景 */
-  background-color: #f8faff;
+  background-color: #ffffff;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 p {
   text-align: left; /* 正文左对齐 */
+  background-color: #f8faff;
 }
 
 .latest-story,
 .history {
-  /* 使用非常浅的浅蓝色背景 */
-  background-color: #f8faff;
+  background-color: #ffffff;
   padding: 20px;
   margin-bottom: 20px;
   text-align: left; /* 正文左对齐 */
@@ -55,6 +54,7 @@ p {
   font-weight: bold;
   border-bottom: 2px solid transparent;
   transition: border-color 0.3s ease;
+  margin-bottom: 10px;
 }
 
 .date:hover {
@@ -64,7 +64,7 @@ p {
 .story {
   display: none;
   padding: 15px; /* 增加内边距 */
-  background-color: #f5f5f5;
+  background-color: #f8faff;
   border-top: 1px solid #eaeaea;
   margin-bottom: 25px; /* 增加间隔 */
 }
@@ -82,16 +82,16 @@ p {
   }
 
   h1 {
-    font-size: 4rem; /* 增大标题字号 */
+    font-size: 1.5rem; /* 增大标题字号 */
   }
 
   .latest-story h2,
   .history h2 {
-    font-size: 2.5rem; /* 增大副标题字号 */
+    font-size: 1rem; /* 增大副标题字号 */
   }
 
   p {
-    font-size: 2.5rem; /* 增大正文字号 */
+    font-size: 1rem; /* 增大正文字号 */
   }
 }
 }
