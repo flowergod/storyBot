@@ -55,10 +55,6 @@
             dateEl.addEventListener("click", () => {
               const storyEl = dateEl.nextElementSibling;	    
               if (storyEl.style.display === "none") {
-		// 先隐藏所有故事
-	        Object.values(storyElements).forEach(storyEl => {
-	          storyEl.style.display = "none";
-	        });
                 storyEl.style.display = "block";
               } else {
                 storyEl.style.display = "none";
