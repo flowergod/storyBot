@@ -3,14 +3,14 @@ body {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   margin: 0;
   padding: 0;
-  background-color: #e8f1f8; /* 浅蓝色背景 */
-  color: #333; /* 中深蓝色文字 */
-  text-align: center; /* 使标题和段落居中 */
+  /* 从深蓝色到浅蓝色的垂直渐变 */
+  background: linear-gradient(to bottom, #000456, #00d2ff);
+  color: #333; /* 文本颜色保持不变，确保可读性 */
+  text-align: center; /* 标题剧中，正文左对齐 */
 }
 
 header {
-  /* 天蓝色到浅蓝色的渐变色 */
-  background: linear-gradient(to bottom right, #89cff0, #b9e1f5);
+  background-color: #b9e1f5; /* 浅蓝色背景，以适应整体的深到浅渐变背景 */
   color: #333;
   padding: 20px 0;
 }
@@ -37,6 +37,7 @@ p {
   background-color: #f5f5f5; /* 非常浅的蓝色背景 */
   padding: 20px;
   margin-bottom: 20px;
+  text-align: left; /* 正文左对齐 */
 }
 
 .latest-story h2,
