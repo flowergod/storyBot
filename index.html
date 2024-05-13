@@ -13,7 +13,7 @@
     <div class="container">
       <div class="latest-story">
         <h2>今天的故事</h2>
-	<p id="today-date" style="font-size: smaller; color: #666;"><span id="date"></span></p>
+		<h3><span id="date"></span></h3>
         <p id="latest-story-text"></p>
       </div>
       <div class="history">
@@ -22,8 +22,9 @@
       </div>
     </div>
     <script>
-	  // 设置今天的日期
+      // 设置今天的日期
       document.getElementById('date').textContent = new Date().toLocaleDateString();
+		
       // 读取CSV文件
       fetch("stories.csv")
         .then((response) => response.text())
@@ -44,7 +45,8 @@
 			
           // 显示历史故事列表
           const historyList = document.getElementById("history-list");
-          const storyElements = {}; // 创建故事元素的数组
+          const storyElements = []; // 创建故事元素的数组
+		  stories.splice(0,1);
 
           stories.forEach((story) => {
             const dateEl = document.createElement("div");
@@ -60,14 +62,13 @@
             historyList.appendChild(dateEl);
             historyList.appendChild(storyEl);
 
-            // 关联日期和对应的故事元素
-            storyElements[story.date] = storyEl;
+            storyElements.push({
+              date: new Date(story.date),
+              element: dateEl.parentNode,
+            }); // 添加故事元素到数组中
+			
           });
-
-          // 展开最新的故事作为默认显示
-          toggleStory(stories[0].date, true);
         });
-
       // 切换故事显示/隐藏的函数
       function toggleStory(date, show = false) {
         // 先隐藏所有故事
