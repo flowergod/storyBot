@@ -1,59 +1,99 @@
 /* styles.css */
 body {
-  font-family: Arial, sans-serif;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   margin: 0;
   padding: 0;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: center;
-  height: 100vh;
+  background-color: #f5f5f5; /* 柔和的背景色 */
+  color: #333; /* 文字颜色 */
+  text-align: center; /* 使标题和段落居中 */
 }
 
 header {
-  background-color: #333;
+  background-color: #6a5acd; /* 温馨的颜色 */
   color: #fff;
-  padding: 10px;
-  text-align: center;
-  width: 100%;
+  padding: 20px 0;
+}
+
+h1 {
+  margin: 0;
+  font-size: 2.5rem; /* 增大标题字体大小 */
 }
 
 .container {
-  width: 70%;
-  display: flex;
-  flex-direction: column;
+  max-width: 90%;
+  margin: 20px auto; /* 上下边距20px，自动边距使容器居中 */
+  padding: 20px;
+  background-color: #fff; /* 白色背景 */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* 添加轻微的阴影效果 */
 }
 
 .latest-story,
 .history {
-  width: 100%;
-  background-color: #eee;
-  border: 1px solid #ccc;
-  padding: 20px;
+  background-color: #fff;
+  border: none;
+  padding: 0;
   margin-bottom: 20px;
 }
 
-.history {
-  margin-top: 0;
-  margin-bottom: 0;
-}
-
+.latest-story h2,
 .history h2 {
+  color: #6a5acd; /* 与头部颜色一致 */
+  font-size: 1.5rem; /* 增大标题字体大小 */
   margin-bottom: 10px;
 }
 
 .date {
   cursor: pointer;
+  color: #6a5acd; /* 与头部颜色一致 */
+  font-weight: bold;
+  border-bottom: 2px solid transparent; /* 添加下划线 */
+  transition: border-color 0.3s ease; /* 平滑过渡效果 */
+}
+
+.date:hover {
+  border-color: #6a5acd; /* 鼠标悬停时下划线颜色 */
 }
 
 .story {
   display: none;
-  background-color: #eee;
-  border: 1px solid #ccc;
   padding: 10px;
-  margin-bottom: 10px;
+  background-color: #f5f5f5; /* 与body背景色一致 */
+  border-top: 1px solid #eaeaea; /* 轻微的边框 */
+  margin-top: 10px;
 }
 
 .story p {
   margin: 0;
+  line-height: 1.6; /* 行高 */
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+  .container {
+    max-width: 95%;
+    padding: 10px;
+  }
+
+  h1 {
+    font-size: 2rem;
+  }
+
+  .latest-story h2,
+  .history h2 {
+    font-size: 1.2rem;
+  }
+}
+
+/* 添加一些额外的装饰性样式 */
+body::before {
+  content: '';
+  display: block;
+  background: url('stars.png') repeat; /* 假设有一个星星背景图片 */
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  opacity: 0.3; /* 轻微的透明度 */
 }
