@@ -63,53 +63,66 @@ fetch("stories.csv")
     });
   });
 
-document.addEventListener("DOMContentLoaded", () => {
-  async function main() {
-    document.getElementById("story-output").textContent = "开始写故事...";
+async function main() {
+  const apiKey = "sk-K231s4pXBHfHz76KNxzBfJxCAWV0V6oAm1L6z8QC8LmkYyLk"; // 替换为你的 OpenAI API 密钥
+  const model = "moonshot-v1-8k"; // 替换为你使用的模型
+  const apiUrl = "https://api.moonshot.cn/v1/chat/completions";
+  const themeInput = document.getElementById("story-theme");
+  const storyOutput = document.getElementById("story-output");
 
-    try {
-      const apiKey = "sk-K231s4pXBHfHz76KNxzBfJxCAWV0V6oAm1L6z8QC8LmkYyLk";
-      const response = await fetch(
-        "https://api.moonshot.cn/v1/chat/completions",
-        {
-          method: "POST",
-          headers: {
-            Authorization: `Bearer ${apiKey}`,
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            model: "moonshot-v1-8k",
-            messages: [
-              {
-                role: "system",
-                content: "你是一个优秀的作家，擅长用温馨的文字书写动人的故事。",
-              },
-              { role: "user", content: "请为我写一个温馨、有爱的晚安小故事。" + "请用以下格式返回结果：故事题目（不要出现“故事题目”这4个字）  <br> <br> --- <br> <br> <故事正文> <br> <br> --- <br> <br> 故事讲完了。你觉得怎么样？" },
-            ],
-            temperature: 0.3,
-          }),
-        }
-      );
-      if (!response.ok) {
-        throw new Error("Network response was not ok");
-      }
-      const data = await response.json();
-      document.getElementById("story-output").innerHTML =
-        data.choices[0].message.content;
-    } catch (error) {
-      console.error(
-        "There has been a problem with your fetch operation:",
-        error
-      );
-      document.getElementById("story-output").textContent =
-        error;
-    }
+  const theme = themeInput.value; // 获取用户输入的主题
+
+  storyOutput.textContent = "开始写故事...";
+
+  if (!theme) {
+    storyOutput.textContent = "请提供一个故事主题";
+    return;
   }
 
+  try {
+    const response = await fetch(apiUrl, {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${apiKey}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        model: model,
+        messages: [
+          {
+            role: "system",
+            content:
+              "你是一个优秀的作家，擅长根据各类主题，撰写出色的故事。故事要求1000字以上。请用以下格式返回结果：故事题目（不要出现“故事题目”这4个字）  <br> <br> --- <br> <br> 故事正文 <br> <br> --- <br> <br> ",
+          },
+          {
+            role: "user",
+            content: `请以 "${theme}" 为主题，为我写一个故事。`,
+          },
+        ],
+        temperature: 0.3,
+      }),
+    });
+
+    if (!response.ok) {
+      const errorData = await response.json();
+      const errorMessage = errorData.error.message;
+      throw new Error(
+        `HTTP error! status: ${response.status}, message: ${errorMessage}`
+      );
+    }
+
+    const data = await response.json();
+    storyOutput.innerHTML = data.choices[0].message.content;
+  } catch (error) {
+    console.error("There has been a problem with your fetch operation:", error);
+    storyOutput.textContent = `无法加载故事：${error.message}`; // 将错误信息显示在页面上
+  }
+}
+
+// 页面加载完成后，为按钮添加点击事件监听器
+document.addEventListener("DOMContentLoaded", () => {
   const generateStoryButton = document.getElementById("generate-story-btn");
   if (generateStoryButton) {
     generateStoryButton.addEventListener("click", main);
-  } else {
-    console.error("Generate story button not found");
   }
 });
