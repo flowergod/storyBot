@@ -9,18 +9,36 @@
   <body>
     <header>
       <h1>晚安故事</h1>
+      <!-- 导航栏 -->
+      <nav>
+        <ul id="navbar">
+          <li><a href="#" class="active" id="nav-stories">晚安故事</a></li>
+          <li><a href="#" id="nav-generate">自己写故事</a></li>
+        </ul>
+      </nav>
     </header>
-    <div class="container">
+    <div class="container" id="content">
+      <!-- 今天的故事 -->
       <div class="latest-story">
         <h2>今天的故事</h2>
-	<h3><span id="date"></span></h3>
+        <h3><span id="date"></span></h3>
         <p id="latest-story-text"></p>
       </div>
+      <!-- 历史故事 -->
       <div class="history">
         <h2>以前的故事</h2>
         <div id="history-list"></div>
       </div>
     </div>
+
+    <!-- 故事生成器部分，初始时隐藏 -->
+    <div class="story-generator" id="story-generator" style="display: none;">
+      <!-- 在这里添加自己写故事的表单和内容 -->
+      <input type="text" id="story-theme" placeholder="输入故事主题">
+      <button id="generate-story-btn">写故事</button>
+      <div><p id="story-output"></p></div>
+    </div>
+
     <!-- 链接到外部 JavaScript 文件 -->
     <script src="script.js"></script>
   </body>
