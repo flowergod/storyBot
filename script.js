@@ -25,7 +25,7 @@ fetch("stories.csv")
 
     stories.splice(0, 1);
 
-    stories.forEach((story) => {
+    stories.slice(0, 10).forEach((story) => {
       const dateEl = document.createElement("div");
       dateEl.classList.add("date");
       dateEl.textContent = story.date;
