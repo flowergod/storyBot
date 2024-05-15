@@ -1,6 +1,7 @@
 /* styles.css */
 body {
-  font-family: "Source Han Sans", "思源黑体", "Microsoft YaHei", "微软雅黑", Arial, sans-serif;
+  font-family: "Source Han Sans", "思源黑体", "Microsoft YaHei", "微软雅黑",
+    Arial, sans-serif;
   margin: 0;
   padding: 0;
   /* 从深蓝色到浅蓝色的垂直渐变 */
@@ -10,9 +11,13 @@ body {
 }
 
 header {
-  background-color: #001362; /* 深蓝色背景，以适应整体的深到浅渐变背景 */
+  width: 100%; /* 标题栏通常占满整个屏幕宽度 */
+/*  background-color: #001362; /* 深蓝色背景，以适应整体的深到浅渐变背景 */
+  background-color: transparent;
   color: #ffffff;
   padding: 20px 0;
+  text-align: center; /* 文本居中 */
+  margin-bottom: 20px; /* 添加下外边距，以创建与导航栏的间隔 */
 }
 
 h1 {
@@ -20,7 +25,7 @@ h1 {
   font-size: 2.5rem;
 }
 h3 {
-  font-size: 0.8rem; 
+  font-size: 0.8rem;
   color: #666;
 }
 .container {
@@ -78,6 +83,59 @@ p {
   line-height: 1.6;
 }
 
+.story-generator {
+  min-height: 80vh; /* 设置最小高度为视口高度的80% */
+  max-width: 90%;
+  margin: 0 auto; /* 确保在媒体查询中也添加了水平居中的样式 */
+  padding: 20px; /* 添加一些内边距 */
+  /* 添加其他样式，如背景颜色或图像 */
+  background-color: #f5f5f5; /* 示例背景颜色 */
+  /* background-image: url('your-background-image.jpg'); */
+  /* background-size: cover; */
+}
+
+/* 如果您想要背景图像覆盖整个区域并保持比例，可以添加以下样式 */
+/* 
+.story-generator {
+  background-image: url('your-background-image.jpg');
+  background-size: cover;
+  background-position: center;
+  min-height: 100vh; /* 确保至少是视口的全高度 */
+*/ 
+
+nav {
+  background-color: #333;
+  color: #fff;
+  text-align: center;
+}
+
+nav ul#navbar {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex; /* 使用弹性盒子布局让列表项在一行显示 */
+  justify-content: center; /* 使列表项在导航栏中间 */
+  width: 90%; /* 设置导航栏的宽度为屏幕宽度的 90% */
+  max-width: 1200px; /* 设置导航栏的最大宽度 */
+  margin: auto; /* 水平居中 */
+  margin-top: 20px;
+}
+
+nav ul#navbar li {
+  margin-right: 10px; /* 为列表项添加一些间隔 */
+}
+
+nav ul#navbar li a {
+  color: #fff;
+  text-decoration: none;
+  padding: 5px 10px;
+  display: block; /* 使链接块级化，以便于点击 */
+}
+
+nav ul#navbar li a.active {
+  border-bottom: 2px solid #fff; /* 当链接激活时，底部添加白色边框 */
+}
+
 /* 响应式设计 */
 @media (max-width: 768px) {
   body {
@@ -86,7 +144,7 @@ p {
   .container {
     max-width: 90%;
     padding: 10px;
-    margin: 0 auto; /* 确保在媒体查询中也添加了水平居中的样式 */    
+    margin: 0 auto; /* 确保在媒体查询中也添加了水平居中的样式 */
   }
 
   h1 {
