@@ -63,7 +63,42 @@ fetch("stories.csv")
     });
   });
 
-async function main() {
+// 页面加载完成后，设置导航栏的点击事件监听器
+document.addEventListener("DOMContentLoaded", () => {
+  const navStories = document.getElementById("nav-stories");
+  const navGenerate = document.getElementById("nav-generate");
+  const content = document.getElementById("content");
+  const storyGenerator = document.getElementById("story-generator");
+
+  function loadStoryData() {
+    // 这里应该是加载故事数据的函数，例如：
+    // content.innerHTML = ...;
+    // 由于具体加载逻辑依赖于您的应用，这里只提供一个示例函数。
+    console.log("Loading story data...");
+  }
+
+  navStories.addEventListener("click", () => {
+    if (!navStories.classList.contains("active")) {
+      navStories.classList.add("active");
+      navGenerate.classList.remove("active");
+      content.style.display = "block";
+      storyGenerator.style.display = "none";
+      loadStoryData(); // 调用加载故事数据的函数
+    }
+  });
+
+  navGenerate.addEventListener("click", () => {
+    if (!navGenerate.classList.contains("active")) {
+      navGenerate.classList.add("active");
+      navStories.classList.remove("active");
+      content.style.display = "none";
+      storyGenerator.style.display = "block";
+      // 这里可以添加切换到故事生成器时需要执行的代码
+    }
+  });
+});
+
+async function generateStory() {
   const apiKey = "sk-K231s4pXBHfHz76KNxzBfJxCAWV0V6oAm1L6z8QC8LmkYyLk"; // 替换为你的 OpenAI API 密钥
   const model = "moonshot-v1-8k"; // 替换为你使用的模型
   const apiUrl = "https://api.moonshot.cn/v1/chat/completions";
@@ -72,7 +107,12 @@ async function main() {
 
   const theme = themeInput.value; // 获取用户输入的主题
 
-  storyOutput.textContent = "开始写故事...";
+  // 按钮变为不可点击，并更改文案
+  var btn = document.getElementById("generate-story-btn");
+  btn.disabled = true;
+  btn.innerHTML = "写故事ing...";
+
+  storyOutput.textContent = "正在写故事...";
 
   if (!theme) {
     storyOutput.textContent = "请提供一个故事主题";
@@ -92,7 +132,7 @@ async function main() {
           {
             role: "system",
             content:
-              "你是一个优秀的作家，擅长根据各类主题，撰写出色的故事。故事要求1000字以上。请用以下格式返回结果：故事题目（不要出现“故事题目”这4个字）  <br> <br> --- <br> <br> 故事正文 <br> <br> --- <br> <br> ",
+              "你是一个优秀的作家，擅长根据各类主题，撰写出色的故事。故事要求1000字以上。请用以下格式返回结果：<b> 故事题目（不要出现“故事题目”这4个字）</b>  <br>  故事正文（不要出现“故事正文”这4个字） ",
           },
           {
             role: "user",
@@ -112,7 +152,15 @@ async function main() {
     }
 
     const data = await response.json();
-    storyOutput.innerHTML = data.choices[0].message.content;
+    // 将文本换行符替换为 HTML 换行标签
+    const formattedContent = data.choices[0].message.content.replace(
+      /\n/g,
+      "<br>"
+    );
+    storyOutput.innerHTML = formattedContent;
+    // 按钮变为可点击，并恢复文案
+    btn.disabled = false;
+    btn.innerHTML = "写故事";
   } catch (error) {
     console.error("There has been a problem with your fetch operation:", error);
     storyOutput.textContent = `无法加载故事：${error.message}`; // 将错误信息显示在页面上
@@ -123,6 +171,6 @@ async function main() {
 document.addEventListener("DOMContentLoaded", () => {
   const generateStoryButton = document.getElementById("generate-story-btn");
   if (generateStoryButton) {
-    generateStoryButton.addEventListener("click", main);
+    generateStoryButton.addEventListener("click", generateStory);
   }
 });
