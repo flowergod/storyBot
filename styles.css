@@ -147,6 +147,14 @@ nav ul#navbar li a.active {
     margin: 0 auto; /* 确保在媒体查询中也添加了水平居中的样式 */
   }
 
+  .story-generator{
+    max-width: 90%;
+    padding: 10px;
+    margin: 0 auto; /* 确保在媒体查询中也添加了水平居中的样式 */
+    min-height: 90vh; /* 设置最小高度为视口高度的80% */
+  
+  }
+
   h1 {
     font-size: 1.5rem; /* 增大标题字号 */
   }
